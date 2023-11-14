@@ -6,10 +6,10 @@ const db = {}
 const sequelize = new Sequelize({
   dialect: 'postgres',
   host: 'localhost',
-  port: 5432,
+  port: process.env.DB_PORT,
   username: 'postgres',
   password: '12345Aa',
-  database: 'your_table',
+  database: 'bootcamp_project',
 })
 db.sequelize = sequelize;
 export default db;
