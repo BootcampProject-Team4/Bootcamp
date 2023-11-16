@@ -7,7 +7,6 @@ const Address = db.sequelize.define('Address', {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
-    unique: true,
   },
   city: {
     type: DataTypes.STRING,

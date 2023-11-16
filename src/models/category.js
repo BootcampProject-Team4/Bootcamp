@@ -15,12 +15,12 @@ const Category = db.sequelize.define('Category', {
   },
 });
 
-Category.associate = (modeller) => {
+/*Category.associate = (modeller) => {
   Category.hasMany(modeller.Activity, {
     foreignKey: 'category_id',
     onDelete: 'CASCADE', // İsteğe bağlı: Bu, bir kategori silindiğinde ilişkili etkinliklerin de silinmesini sağlar
   });
-};
+};*/
 
 // Kontrol et ve tabloyu oluştur veya güncelle.
 Category.sync()

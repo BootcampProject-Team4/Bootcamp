@@ -1,20 +1,16 @@
 import { DataTypes } from 'sequelize';
 import db from '../db.js';
+import Address from './address.js';
 
 const Place = db.sequelize.define('Place', {
   
-  mekanid: {
+  id: {
     type: DataTypes.INTEGER,
     allowNull: false,
     primaryKey: true,
-    unique: true,
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: false,
-  },
-  outdoor: {
-    type: DataTypes.BOOLEAN,
     allowNull: false,
   },
   interior: {
@@ -31,8 +27,10 @@ const Place = db.sequelize.define('Place', {
   },
   address_id: {
     type: DataTypes.INTEGER,
-    allowNull: false,
-    unique: true,
+    references: {
+      model: Address, 
+      foreignKey: 'id',
+    },
   },
 
 });

@@ -1,6 +1,7 @@
 import { DataTypes } from 'sequelize';
 import db from '../db.js';
 import Category from './category.js';
+import Place from './place.js';
 
 const Activity = db.sequelize.define('Activity', {
   id: {
@@ -26,16 +27,13 @@ const Activity = db.sequelize.define('Activity', {
     allowNull: false,
   },
   endtime: {
-    type: DataTypes.DATE,
+    type: DataTypes.TIME,
     allowNull: false,
   },
   description: {
     type: DataTypes.TEXT,
     allowNull: false,
     unique: true,
-  },
-  stand: {
-    type: DataTypes.BOOLEAN,
   },
   capacity: {
     type: DataTypes.INTEGER,
@@ -45,7 +43,14 @@ const Activity = db.sequelize.define('Activity', {
     type: DataTypes.INTEGER,
     references: {
       model: Category, // Reference to the Category model
-      foreignKey: 'categoryid', // Reference to the primary key in the Category model
+      foreignKey: 'id', // Reference to the primary key in the Category model
+    },
+  },
+  place_id: {
+    type: DataTypes.INTEGER,
+    references: {
+      model: Place, 
+      foreignKey: 'id', 
     },
   },
 });

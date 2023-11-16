@@ -7,7 +7,8 @@ import Category from './models/category.js';
 import Activity from "./models/activity.js";
 import Place from "./models/place.js";
 import Address from "./models/address.js";
-
+import Seat from "./models/seat.js";
+import Seatcategory from "./models/seatcategory.js";
 dotenv.config();
 
 const app = express();
@@ -77,8 +78,8 @@ app.get('/Categories', async (req, res) => {
 // Örnek bir kullanıcı oluştur
 app.post('/createActivities', async (req, res) => {
   try {
-    const { name, startdate, enddate, starttime, endtime, description, stand, capacity, category_id } = req.body;
-    const activity = await Activity.create({ name, startdate, enddate, starttime, endtime, description, stand, capacity, category_id });
+    const { name, startdate, enddate, starttime, endtime, description, capacity, category_id, place_id } = req.body;
+    const activity = await Activity.create({ name, startdate, enddate, starttime, endtime, description, capacity, category_id, place_id });
     res.status(201).json(activity);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -98,8 +99,8 @@ app.get('/activities', async (req, res) => {
 // Örnek bir kullanıcı oluştur
 app.post('/createPlace', async (req, res) => {
   try {
-    const { mekanid, name, outdoor, interior, seatcapacity, standcapacity, address_id } = req.body;
-    const place = await Place.create({ mekanid, name, outdoor, interior, seatcapacity, standcapacity, address_id });
+    const { id, name, interior, seatcapacity, standcapacity, address_id } = req.body;
+    const place = await Place.create({ id, name, interior, seatcapacity, standcapacity, address_id });
     res.status(201).json(place);
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -120,8 +121,8 @@ app.get('/places', async (req, res) => {
 app.post('/createAddress', async (req, res) => {
   try {
     const { id, city, district, neighborhood, street, gatenumber } = req.body;
-    const place = await Place.create({ id, city, district, neighborhood, street, gatenumber });
-    res.status(201).json(place);
+    const address = await Address.create({ id, city, district, neighborhood, street, gatenumber });
+    res.status(201).json(address);
   } catch (err) {
     res.status(500).json({ error: err.message });
   }
@@ -137,6 +138,47 @@ app.get('/addresses', async (req, res) => {
   }
 });
 
+// Örnek bir kullanıcı oluştur
+app.post('/createSeats', async (req, res) => {
+  try {
+    const { id, benchseat, number, seatcategory_id, place_id, pay  } = req.body;
+    const seat = await Seat.create({ id, benchseat, number, seatcategory_id, place_id, pay });
+    res.status(201).json(seat);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Tüm kullanıcıları getir
+app.get('/seats', async (req, res) => {
+  try {
+    const seats = await Seat.findAll();
+    res.status(200).json(seats);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Örnek bir kullanıcı oluştur
+app.post('/createSeatcategories', async (req, res) => {
+  try {
+    const { id, name  } = req.body;
+    const seatcategory = await Seatcategory.create({ id, name  });
+    res.status(201).json(seatcategory);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
+
+// Tüm kullanıcıları getir
+app.get('/seatcategories', async (req, res) => {
+  try {
+    const seatcategories = await Seatcategory.findAll();
+    res.status(200).json(seatcategories);
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
 
 
 
