@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize';
 import db from '../db.js';
-import Seatcategory from './seatcategory.js';
 import Place from './place.js';
 
 const Seat = db.sequelize.define('Seat', {
@@ -18,26 +17,14 @@ const Seat = db.sequelize.define('Seat', {
     type: DataTypes.INTEGER,
     unique: true,
   },
-  seatcategory_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Seatcategory, 
-      foreignKey: 'id',
-    },
-  },
-  place_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Place, 
-      foreignKey: 'id',
-    },
-  },
   pay: {
     type: DataTypes.INTEGER,
     unique: true,
   },
 
 });
+
+Place.hasMany(Seat);
 
 
 // Kontrol et ve tabloyu oluştur veya güncelle.

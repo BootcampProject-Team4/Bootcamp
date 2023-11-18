@@ -2,6 +2,7 @@ import { DataTypes } from 'sequelize';
 import db from '../db.js';
 import Address from './address.js';
 
+
 const Place = db.sequelize.define('Place', {
   
   id: {
@@ -25,15 +26,12 @@ const Place = db.sequelize.define('Place', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  address_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Address, 
-      foreignKey: 'id',
-    },
-  },
+  
+  
 
 });
+Address.hasOne(Place);
+
 
 // Kontrol et ve tabloyu oluştur veya güncelle.
 Place.sync()

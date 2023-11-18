@@ -1,6 +1,5 @@
 import { DataTypes } from 'sequelize';
 import db from '../db.js';
-import Category from './category.js';
 import Place from './place.js';
 
 const Activity = db.sequelize.define('Activity', {
@@ -38,24 +37,9 @@ const Activity = db.sequelize.define('Activity', {
   capacity: {
     type: DataTypes.INTEGER,
     allowNull: false,
-  },
-  category_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Category, // Reference to the Category model
-      foreignKey: 'id', // Reference to the primary key in the Category model
-    },
-  },
-  place_id: {
-    type: DataTypes.INTEGER,
-    references: {
-      model: Place, 
-      foreignKey: 'id', 
-    },
-  },
+  }
 });
-
-  
+Place.hasOne(Activity);
 
 // Kontrol et ve tabloyu oluştur veya güncelle.
 Activity.sync()

@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import db from '../db.js';
+import Seat from './seat.js';
 
 const Seatcategory = db.sequelize.define('Seatcategory', {
   
@@ -14,6 +15,8 @@ const Seatcategory = db.sequelize.define('Seatcategory', {
     unique: true,
   },
 });
+
+Seatcategory.hasMany(Seat);
 
 // Kontrol et ve tabloyu oluştur veya güncelle.
 Seatcategory.sync()
