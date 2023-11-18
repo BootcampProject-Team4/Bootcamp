@@ -28,6 +28,7 @@ const Place = db.sequelize.define('Place', {
   },
   
   
+  
 
 });
 Address.hasOne(Place);
