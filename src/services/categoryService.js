@@ -75,9 +75,10 @@ import Category from '../models/category.js';
 const getAllCategories = async () => {
   try {
     const categories = await Category.findAll();
+  
     return categories;
   } catch (error) {
-    throw new Error(`Error in getAllCategories service: ${error.message}`);
+    throw new Error(`Error in getAllCategories service: ${error.message}`);    
   }
 };
 
@@ -92,7 +93,7 @@ const createCategory = async (categoryData) => {
 
 const deleteCategory = async (categoryId) => {
   try {
-    const deletedCategory = await Category.destroy({ where: { id: categoryId } });
+    const deletedCategory = await Category.remove({ where: { id: +categoryId } });
     return deletedCategory;
   } catch (error) {
     throw new Error(`Error in deleteCategory service: ${error.message}`);

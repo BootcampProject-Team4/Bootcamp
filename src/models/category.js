@@ -2,11 +2,12 @@ import { DataTypes } from 'sequelize';
 import db from '../db.js';
 import Activity from './activity.js';
 
-const Category = db.sequelize.define('Category', {
 
+const Category = db.sequelize.define("Category", {
   id: {
     type: DataTypes.INTEGER,
-    primaryKey:true,
+    autoIncrement: true,
+    primaryKey: true,
     unique: true,
   },
   name: {

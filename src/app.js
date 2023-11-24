@@ -3,19 +3,21 @@ import express from "express";
 import bodyParser from "body-parser";
 import db from './db.js';
 import categoryRouter from "./routers/categoryRouter.js";
+import activityRouter from "./routers/activityRouter.js";
+
 
 dotenv.config();
 
 const app = express();
 const port = process.env.PORT;
 
-
-
 app.use(bodyParser.json());
 app.use(express.json());
 
 
-app.use('/category',categoryRouter)
+app.use('/category',categoryRouter);
+
+app.use('/activity', activityRouter);
 
 
 app.listen(port, () => {

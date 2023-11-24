@@ -1,34 +1,32 @@
 import { Response } from '../constants/response.js';
-import categoryService from '../services/categoryService.js';
-
-const getAllCategory = async (req, res, next) => {
+import activityService from '../services/activityService.js';
+const getAllActivity = async (req, res, next) => {
     const response = new Response();
-    
     try {
-        const responseFromService =  await categoryService.getAllCategories()
+        const responseFromService =  await activityService.getAll(req.query, req.userId);
 
         response.status = 200;
         response.message = 'ok';
         response.body = responseFromService;
     } catch (error) {
-        console.log('something went wrong: Controller: categoryController.js', error);
+        console.log('something went wrong: Controller: activityController.js', error);
         response.status = 400;
         response.message = error.message;
     }
     return res.status(response.status).send(response);
 };
 
-const createAllCategory = async function (req, res, next) {
+const createAllActivity = async function (req, res, next) {
     const response = new Response();
     try {
-        const responseFromService = await categoryService.createCategory(req.body, req.userId)
+        const responseFromService = await activityService.createAllActivity(req.query, req.userId)
 
         response.status = 200;
         response.message = 'OK';
         response.body = responseFromService;
 
     } catch (error) {
-        console.log('something went wrong: Controller: categoryController.js', error);
+        console.log('something went wrong: Controller: activityController.js', error);
         response.status = 400;
         response.message = error.message;
     }
@@ -37,17 +35,17 @@ const createAllCategory = async function (req, res, next) {
     }
 };
 
-const deleteAllCategory = async function (req, res, next) {
+const deleteAllActivity = async function (req, res, next) {
     const response = new Response();
     try {
-        const responseFromService = await categoryService.deleteCategory(req.query, req.userId)
+        const responseFromService = await activityService.deleteAllActivity(req.query, req.userId)
 
         response.status = 200;
         response.message = 'OK';
         response.body = responseFromService;
 
     } catch (error) {
-        console.log('something went wrong: Controller: categoryController.js', error);
+        console.log('something went wrong: Controller: activityController.js', error);
         response.status = 400;
         response.message = error.message;
     }
@@ -56,17 +54,17 @@ const deleteAllCategory = async function (req, res, next) {
     }
 };
 
-const putAllCategory = async function (req, res, next) {
+const putAllActivity = async function (req, res, next) {
     const response = new Response();
     try {
-        const responseFromService = await categoryService.updateCategory(req.query, req.userId)
+        const responseFromService = await activityService.putAllActivity(req.query, req.userId)
 
         response.status = 200;
         response.message = 'OK';
         response.body = responseFromService;
 
     } catch (error) {
-        console.log('something went wrong: Controller: categoryController.js', error);
+        console.log('something went wrong: Controller: activityController.js', error);
         response.status = 400;
         response.message = error.message;
     }
@@ -75,4 +73,4 @@ const putAllCategory = async function (req, res, next) {
     }
 };
 
-export default {getAllCategory, createAllCategory, deleteAllCategory, putAllCategory};
+export default {getAllActivity, createAllActivity, deleteAllActivity, putAllActivity};
