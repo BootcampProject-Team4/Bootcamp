@@ -1,53 +1,56 @@
 import Activity from '../models/activity.js';
+import Category from '../models/category.js';
 
 
 
 // Function to get all activities
-const getAll = async (userId) => {
+const getAllActivities = async () => {
     try {
         
-        const activities = await Activity.findAll(userId);
+        const activities = await Activity.findAll();
         return activities;
     } catch (error) {
-        throw new Error('Error while fetching activities');
+        throw new Error(`Error in getAllActivities service: ${error.message}`);
     }
 };
 
 // Function to create a new activity
-const create = async (newActivityData) => {
+const createActivity = async (ActivityData) => {
     try {
         
-        const newActivity = await Activity.create(newActivityData);
+        const newActivity = await Activity.create(ActivityData);
         return newActivity;
     } catch (error) {
-        throw new Error('Error while creating a new activity');
+        throw new Error(`Error in createActivity service: ${error.message}`);
     }
 };
 
 // Function to delete all activities
-const deleteAll = async () => {
+const deleteActivity = async (activityId) => {
     try {
-        await Activity.destroy({
-            where: {} 
-        });
-        return 'All activities deleted successfully';
+        const deletedActivity = await Activity.destroy({ where: {id : +activityId },});
+        return deletedActivity;
     } catch (error) {
-        throw new Error('Error while deleting all activities');
+        throw new Error(`Error in deleteActivity service: ${error.message}`);
     }
 };
 
 // Function to update all activities
-const updateAll = async (updatedData) => {
-    try {
-        const updatedActivities = await Activity.update(
-            updatedData,
-            { where: {} } 
-        );
-        return updatedActivities;
-    } catch (error) {
-        throw new Error('Error while updating all activities');
+const updateActivity = async (activityId, ActivityData) => {
+  try {
+    const [updatedRowsCount, updatedActivities] = await Activity.update(
+      ActivityData,
+      { where: { id: +activityId }, returning: true }
+    );
+
+    if (updatedRowsCount > 0) {
+      return updatedActivities[0].get();
     }
+    throw new Error(`Activity with id ${activityId} not found`);
+  } catch (error) {
+    throw new Error(`Error in updateActivity service: ${error.message}`);
+  }
 };
 
 // Export the service functions
-export default { getAll, create, deleteAll, updateAll };
+export default { getAllActivities, createActivity, deleteActivity, updateActivity };

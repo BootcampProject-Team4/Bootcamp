@@ -1,10 +1,12 @@
 import { DataTypes } from 'sequelize';
 import db from '../db.js';
 import Place from './place.js';
+import Category from './category.js'
 
-const Activity = db.sequelize.define('Activity', {
+const Activity = db.sequelize.define("Activity", {
   id: {
     type: DataTypes.INTEGER,
+    autoIncrement: true,
     allowNull: false,
     primaryKey: true,
   },
@@ -14,11 +16,11 @@ const Activity = db.sequelize.define('Activity', {
     unique: true,
   },
   startdate: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     allowNull: false,
   },
   enddate: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     allowNull: false,
   },
   starttime: {
@@ -31,26 +33,24 @@ const Activity = db.sequelize.define('Activity', {
   },
   description: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    //allowNull: false,
     unique: true,
   },
   capacity: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    //allowNull: false,
   },
-
-
-
 });
 Place.hasOne(Activity);
+Category.hasMany(Activity);
 
 // Kontrol et ve tabloyu oluştur veya güncelle.
-Activity.sync({force: true})
+Activity.sync()
   .then(() => {
-    console.log('Activity modeli oluşturuldu veya güncellendi.');
+    console.log("Activity modeli oluşturuldu veya güncellendi.");
   })
   .catch((err) => {
-    console.error('Activity modeli oluşturulurken hata oluştu:', err);
+    console.error("Activity modeli oluşturulurken hata oluştu:", err);
   });
 
 export default Activity;

@@ -3,7 +3,7 @@ import activityService from '../services/activityService.js';
 const getAllActivity = async (req, res, next) => {
     const response = new Response();
     try {
-        const responseFromService =  await activityService.getAll(req.body, req.userId);
+        const responseFromService =  await activityService.getAllActivities()
 
         response.status = 200;
         response.message = 'ok';
@@ -19,7 +19,7 @@ const getAllActivity = async (req, res, next) => {
 const createAllActivity = async function (req, res, next) {
     const response = new Response();
     try {
-        const responseFromService = await activityService.create(req.body, req.userId)
+        const responseFromService = await activityService.createActivity(req.body, req.userId)
 
         response.status = 200;
         response.message = 'OK';
@@ -38,7 +38,7 @@ const createAllActivity = async function (req, res, next) {
 const deleteAllActivity = async function (req, res, next) {
     const response = new Response();
     try {
-        const responseFromService = await activityService.deleteAll(req.query, req.userId)
+        const responseFromService = await activityService.deleteActivity(req.query.id, req.userId)
 
         response.status = 200;
         response.message = 'OK';
@@ -57,7 +57,7 @@ const deleteAllActivity = async function (req, res, next) {
 const putAllActivity = async function (req, res, next) {
     const response = new Response();
     try {
-        const responseFromService = await activityService.updateAll(req.query, req.userId)
+        const responseFromService = await activityService.updateActivity(req.query.id, req.body)
 
         response.status = 200;
         response.message = 'OK';

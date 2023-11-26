@@ -21,9 +21,9 @@ const createCategory = async (categoryData) => {
   }
 };
 
-const deleteCategory = async (categoryId) => {
+const deleteCategory = async (CategoryId) => {
   try {
-    const deletedCategory = await Category.destroy({ where: { id: +categoryId }, });
+    const deletedCategory = await Category.destroy({ where: { id: +CategoryId }, });
     
     return deletedCategory;
   } catch (error) {

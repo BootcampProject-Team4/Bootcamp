@@ -1,9 +1,8 @@
 import { DataTypes } from 'sequelize';
 import db from '../db.js';
-import Activity from './activity.js';
 
 
-const Category = db.sequelize.define("Category", {
+const Category = db.sequelize.define('Category', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
@@ -17,16 +16,13 @@ const Category = db.sequelize.define("Category", {
   },
 });
 
-Category.hasMany(Activity);
-
-
 // Kontrol et ve tabloyu oluştur veya güncelle.
 Category.sync()
   .then(() => {
-    console.log('Category modeli oluşturuldu veya güncellendi.');
+    console.log("Category modeli oluşturuldu veya güncellendi.");
   })
   .catch((err) => {
-    console.error('Category modeli oluşturulurken hata oluştu:', err);
+    console.error("Category modeli oluşturulurken hata oluştu:", err);
   });
 
 export default Category;
