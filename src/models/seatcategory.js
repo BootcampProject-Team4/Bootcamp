@@ -2,12 +2,11 @@ import { DataTypes } from 'sequelize';
 import db from '../db.js';
 import Seat from './seat.js';
 
-const Seatcategory = db.sequelize.define('Seatcategory', {
-  
+const Seatcategory = db.sequelize.define("Seatcategory", {
   id: {
     type: DataTypes.INTEGER,
-    primaryKey:true,
-    unique: true,
+    autoIncrement: true,
+    primaryKey: true,
   },
   name: {
     type: DataTypes.STRING,

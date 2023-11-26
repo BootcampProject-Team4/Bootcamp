@@ -3,11 +3,10 @@ import db from '../db.js';
 import Address from './address.js';
 
 
-const Place = db.sequelize.define('Place', {
-  
+const Place = db.sequelize.define("Place", {
   id: {
     type: DataTypes.INTEGER,
-    allowNull: false,
+    autoIncrement: true,
     primaryKey: true,
   },
   name: {
@@ -26,10 +25,6 @@ const Place = db.sequelize.define('Place', {
     type: DataTypes.INTEGER,
     allowNull: false,
   },
-  
-  
-  
-
 });
 Address.hasOne(Place);
 

@@ -4,6 +4,8 @@ import bodyParser from "body-parser";
 import db from './db.js';
 import categoryRouter from "./routers/categoryRouter.js";
 import activityRouter from "./routers/activityRouter.js";
+import addressRouter from "./routers/addressRouter.js";
+import placeRouter from "./routers/placeRouter.js";
 
 
 dotenv.config();
@@ -16,8 +18,10 @@ app.use(express.json());
 
 
 app.use('/category',categoryRouter);
-
 app.use('/activity', activityRouter);
+app.use('/address', addressRouter);
+app.use('/place', placeRouter);
+
 
 
 app.listen(port, () => {

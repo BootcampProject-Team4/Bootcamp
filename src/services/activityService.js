@@ -1,5 +1,4 @@
 import Activity from '../models/activity.js';
-import Category from '../models/category.js';
 
 
 

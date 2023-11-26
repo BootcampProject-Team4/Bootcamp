@@ -2,12 +2,11 @@ import { DataTypes } from 'sequelize';
 import db from '../db.js';
 import Place from './place.js';
 
-const Seat = db.sequelize.define('Seat', {
-
+const Seat = db.sequelize.define("Seat", {
   id: {
     type: DataTypes.INTEGER,
-    primaryKey:true,
-    unique: true,
+    autoIncrement: true,
+    primaryKey: true,
   },
   benchseat: {
     type: DataTypes.STRING,
@@ -19,9 +18,7 @@ const Seat = db.sequelize.define('Seat', {
   },
   pay: {
     type: DataTypes.INTEGER,
-    unique: true,
   },
-
 });
 
 Place.hasMany(Seat);
