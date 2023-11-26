@@ -7,6 +7,7 @@ const getAllCategory = async (req, res, next) => {
     try {
         const responseFromService =  await categoryService.getAllCategories()
 
+
         response.status = 200;
         response.message = 'ok';
         response.body = responseFromService;
@@ -40,12 +41,12 @@ const createAllCategory = async function (req, res, next) {
 const deleteAllCategory = async function (req, res, next) {
     const response = new Response();
     try {
-        const responseFromService = await categoryService.deleteCategory(req.query, req.userId)
+        const responseFromService = await categoryService.deleteCategory(req.query.id, req.userId)
 
         response.status = 200;
         response.message = 'OK';
         response.body = responseFromService;
-
+        //{"id" : '2'}
     } catch (error) {
         console.log('something went wrong: Controller: categoryController.js', error);
         response.status = 400;
@@ -59,7 +60,7 @@ const deleteAllCategory = async function (req, res, next) {
 const putAllCategory = async function (req, res, next) {
     const response = new Response();
     try {
-        const responseFromService = await categoryService.updateCategory(req.query, req.userId)
+        const responseFromService = await categoryService.updateCategory(req.query.id, req.body)
 
         response.status = 200;
         response.message = 'OK';

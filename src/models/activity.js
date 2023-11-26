@@ -37,12 +37,15 @@ const Activity = db.sequelize.define('Activity', {
   capacity: {
     type: DataTypes.INTEGER,
     allowNull: false,
-  }
+  },
+
+
+
 });
 Place.hasOne(Activity);
 
 // Kontrol et ve tabloyu oluştur veya güncelle.
-Activity.sync()
+Activity.sync({force: true})
   .then(() => {
     console.log('Activity modeli oluşturuldu veya güncellendi.');
   })

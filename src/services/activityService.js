@@ -1,17 +1,3 @@
-// Import necessary dependencies and models
-/*import Activity from '../models/activity.js';
-
-// Function to get all activities
-const getAll = async (queryParams, userId) => {
-    try {
-        const activities = await Activity.findAll({
-        });
-        return activities;
-    } catch (error) {
-        throw new Error('Error while fetching activities from the database');
-    }
-};*/
-// Import necessary dependencies and models
 import Activity from '../models/activity.js';
 
 

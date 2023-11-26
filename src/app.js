@@ -29,12 +29,14 @@ app.listen(port, () => {
 // Veritabanını oluştur veya güncelle.
 async function initializeDatabase() {
   try {
-    await db.sequelize.sync({ force: true });
+    await db.sequelize.sync({ force: false });
     console.log('Veritabanı ve tablolar oluşturuldu!');
   } catch (err) {
     console.error('Veritabanına bağlanırken hata oluştu:', err);
   }
 }
+
+
 
 initializeDatabase();
 
