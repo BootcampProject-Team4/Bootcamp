@@ -6,7 +6,9 @@ import categoryRouter from "./routers/categoryRouter.js";
 import activityRouter from "./routers/activityRouter.js";
 import addressRouter from "./routers/addressRouter.js";
 import placeRouter from "./routers/placeRouter.js";
-
+import seatRouter from "./routers/seatRouter.js";
+import seatcategoryRouter from "./routers/seatcategoryRouter.js";
+import userRouter from "./routers/userRouter.js";
 
 dotenv.config();
 
@@ -21,7 +23,9 @@ app.use('/category',categoryRouter);
 app.use('/activity', activityRouter);
 app.use('/address', addressRouter);
 app.use('/place', placeRouter);
-
+app.use('/seat', seatRouter);
+app.use('/seatcategory', seatcategoryRouter);
+app.use('/user', userRouter);
 
 
 app.listen(port, () => {

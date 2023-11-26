@@ -11,7 +11,6 @@ const Seatcategory = db.sequelize.define("Seatcategory", {
   name: {
     type: DataTypes.STRING,
     allowNull: false,
-    unique: true,
   },
 });
 

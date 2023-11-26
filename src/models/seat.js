@@ -10,11 +10,9 @@ const Seat = db.sequelize.define("Seat", {
   },
   benchseat: {
     type: DataTypes.STRING,
-    unique: true,
   },
   number: {
     type: DataTypes.INTEGER,
-    unique: true,
   },
   pay: {
     type: DataTypes.INTEGER,

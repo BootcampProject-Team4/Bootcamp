@@ -1,33 +1,33 @@
 import { Response } from '../constants/response.js';
-import placeService from '../services/placeService.js';
+import seatService from '../services/seatService.js';
 
-const getAllPlace = async (req, res, next) => {
+const getAllSeat = async (req, res, next) => {
     const response = new Response();
     try {
-        const responseFromService =  await placeService.getAllPlaces()
+        const responseFromService =  await seatService.getAllSeats()
 
         response.status = 200;
         response.message = 'ok';
         response.body = responseFromService;
     } catch (error) {
-        console.log('something went wrong: Controller: placeController.js', error);
+        console.log('something went wrong: Controller: seatController.js', error);
         response.status = 400;
         response.message = error.message;
     }
     return res.status(response.status).send(response);
 };
 
-const createAllPlace = async function (req, res, next) {
+const createAllSeat = async function (req, res, next) {
     const response = new Response();
     try {
-        const responseFromService = await placeService.createPlace(req.body, req.userId)
+        const responseFromService = await seatService.createSeat(req.body, req.userId)
 
         response.status = 200;
         response.message = 'OK';
         response.body = responseFromService;
 
     } catch (error) {
-        console.log('something went wrong: Controller: placeController.js', error);
+        console.log('something went wrong: Controller: seatController.js', error);
         response.status = 400;
         response.message = error.message;
     }
@@ -36,17 +36,17 @@ const createAllPlace = async function (req, res, next) {
     }
 };
 
-const deleteAllPlace = async function (req, res, next) {
+const deleteAllSeat = async function (req, res, next) {
     const response = new Response();
     try {
-        const responseFromService = await placeService.deletePlace(req.query.id, req.userId)
+        const responseFromService = await seatService.deleteSeat(req.query.id, req.userId)
 
         response.status = 200;
         response.message = 'OK';
         response.body = responseFromService;
 
     } catch (error) {
-        console.log('something went wrong: Controller: placeController.js', error);
+        console.log('something went wrong: Controller: seatController.js', error);
         response.status = 400;
         response.message = error.message;
     }
@@ -55,17 +55,17 @@ const deleteAllPlace = async function (req, res, next) {
     }
 };
 
-const putAllPlace = async function (req, res, next) {
+const putAllSeat = async function (req, res, next) {
     const response = new Response();
     try {
-        const responseFromService = await placeService.updatePlace(req.query.id, req.body)
+        const responseFromService = await seatService.updateSeat(req.query.id, req.body)
 
         response.status = 200;
         response.message = 'OK';
         response.body = responseFromService;
 
     } catch (error) {
-        console.log('something went wrong: Controller: placeController.js', error);
+        console.log('something went wrong: Controller: seatController.js', error);
         response.status = 400;
         response.message = error.message;
     }
@@ -74,4 +74,4 @@ const putAllPlace = async function (req, res, next) {
     }
 };
 
-export default { getAllPlace, createAllPlace, deleteAllPlace, putAllPlace };
+export default { getAllSeat, createAllSeat, deleteAllSeat, putAllSeat };

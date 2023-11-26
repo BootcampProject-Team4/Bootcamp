@@ -1,4 +1,4 @@
-import  Sequelize  from 'sequelize';
+import  {Sequelize}  from 'sequelize';
 
 const db = {}
 //sequelize
@@ -14,6 +14,7 @@ const sequelize = new Sequelize({
   database: 'bootcamp_project',
 })
 db.sequelize = sequelize;
+
 
 
 
