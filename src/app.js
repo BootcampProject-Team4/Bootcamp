@@ -18,7 +18,6 @@ const port = process.env.PORT;
 app.use(bodyParser.json());
 app.use(express.json());
 
-
 app.use('/category',categoryRouter);
 app.use('/activity', activityRouter);
 app.use('/address', addressRouter);
@@ -26,13 +25,6 @@ app.use('/place', placeRouter);
 app.use('/seat', seatRouter);
 app.use('/seatcategory', seatcategoryRouter);
 app.use('/user', userRouter);
-
-
-app.listen(port, () => {
-  console.log(`Server is running on port ${port}`);
-});
-
-
 
 // Veritabanını oluştur veya güncelle.
 async function initializeDatabase() {
@@ -43,8 +35,8 @@ async function initializeDatabase() {
     console.error('Veritabanına bağlanırken hata oluştu:', err);
   }
 }
-
-
-
 initializeDatabase();
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
+});
 

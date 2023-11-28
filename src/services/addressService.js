@@ -2,7 +2,7 @@ import Address from "../models/address.js";
 
 const getAllAddresses = async () => {
   try {
-    const Addresses = await Address.findAll();
+    const Addresses = await Address.findAll({ offset: offset, limit: size });
 
     return Addresses;
   } catch (error) {

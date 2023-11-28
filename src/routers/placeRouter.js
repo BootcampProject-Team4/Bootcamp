@@ -1,25 +1,33 @@
 import express from "express";
 import placeController from "../controllers/placeController.js";
-
+import joiSchemaValidation from "../middleware/joiSchemaValidation.js";
+import placeSchemas from "../constants/validationSchema/placeSchemas.js";
+import commonSchemas from "../constants/validationSchema/commonSchemas.js";
 
 const router = express.Router();
 router.get(
-    "/", 
-    placeController.getAllPlace
+  "/",
+  joiSchemaValidation.validateQuerryParams(commonSchemas.paginationSchema),
+  placeController.getAllPlace
 );
 
 router.post(
-    "/", 
-    placeController.createAllPlace
-    );
+  "/",
+  joiSchemaValidation.validateBody(placeSchemas.placeSchema),
+  placeController.createPlace
+);
 
 router.delete(
-    "/", 
-    placeController.deleteAllPlace
-    );
+  "/",
+  joiSchemaValidation.validateQuerryParams(commonSchemas.idSchema),
+  placeController.deletePlace
+);
 
 router.put(
-    "/", 
-    placeController.putAllPlace
-    );
+  "/",
+  joiSchemaValidation.validateQuerryParams(commonSchemas.idSchema),
+  joiSchemaValidation.validateBody(placeSchemas.placeSchema),
+  placeController.putPlace
+);
+    
 export default router;

@@ -1,7 +1,6 @@
 import Joi from "joi";
 
-const addressSchema = Joi.object({
-  id: Joi.number().integer().positive(),
+const addressSchema = Joi.object({ 
   city: Joi.string().required(),
   district: Joi.string().required(),
   neighborhood: Joi.string().required(),
@@ -9,4 +8,4 @@ const addressSchema = Joi.object({
   gatenumber: Joi.number().integer(),
 });
 
-export default addressSchema;
+export default {addressSchema};

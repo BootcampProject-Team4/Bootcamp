@@ -1,8 +1,9 @@
 import User from "../models/user.js";
 
-const getAllUsers = async () => {
+const getAllUsers = async (page, size) => {
   try {
-    const Users = await User.findAll();
+    const offset = (page - 1) * size;
+    const Users = await User.findAll({ offset: offset, limit: size });
 
     return Users;
   } catch (error) {

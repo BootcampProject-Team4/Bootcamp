@@ -1,7 +1,6 @@
 import Joi from "joi";
 
-const placeSchema = Joi.object({
-  id: Joi.number().integer().positive(),
+const placeSchema = Joi.object({  
   name: Joi.string().required(),
   interior: Joi.boolean().required(),
   seatcapacity: Joi.number().integer().required(),
@@ -9,4 +8,4 @@ const placeSchema = Joi.object({
   AddressId: Joi.number().integer(), 
 });
 
-export default placeSchema;
+export default {placeSchema};

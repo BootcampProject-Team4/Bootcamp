@@ -1,8 +1,12 @@
 import Seatcategory from "../models/seatcategory.js";
 
-const getAllSeatcategories = async () => {
+const getAllSeatcategories = async (page, size) => {
   try {
-    const seatcategories = await Seatcategory.findAll();
+    const offset = (page - 1) * size;
+    const seatcategories = await Seatcategory.findAll({
+      offset: offset,
+      limit: size,
+    });
 
     return seatcategories;
   } catch (error) {

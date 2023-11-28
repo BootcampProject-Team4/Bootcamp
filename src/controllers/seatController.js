@@ -4,7 +4,10 @@ import seatService from '../services/seatService.js';
 const getAllSeat = async (req, res, next) => {
     const response = new Response();
     try {
-        const responseFromService =  await seatService.getAllSeats()
+        const responseFromService = await seatService.getAllSeats(
+          req.query.page,
+          req.query.size
+        );
 
         response.status = 200;
         response.message = 'ok';
@@ -17,7 +20,7 @@ const getAllSeat = async (req, res, next) => {
     return res.status(response.status).send(response);
 };
 
-const createAllSeat = async function (req, res, next) {
+const createSeat = async function (req, res, next) {
     const response = new Response();
     try {
         const responseFromService = await seatService.createSeat(req.body, req.userId)
@@ -36,7 +39,7 @@ const createAllSeat = async function (req, res, next) {
     }
 };
 
-const deleteAllSeat = async function (req, res, next) {
+const deleteSeat = async function (req, res, next) {
     const response = new Response();
     try {
         const responseFromService = await seatService.deleteSeat(req.query.id, req.userId)
@@ -55,7 +58,7 @@ const deleteAllSeat = async function (req, res, next) {
     }
 };
 
-const putAllSeat = async function (req, res, next) {
+const putSeat = async function (req, res, next) {
     const response = new Response();
     try {
         const responseFromService = await seatService.updateSeat(req.query.id, req.body)
@@ -74,4 +77,4 @@ const putAllSeat = async function (req, res, next) {
     }
 };
 
-export default { getAllSeat, createAllSeat, deleteAllSeat, putAllSeat };
+export default { getAllSeat, createSeat, deleteSeat, putSeat };

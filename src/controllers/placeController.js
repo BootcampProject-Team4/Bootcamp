@@ -4,7 +4,10 @@ import placeService from '../services/placeService.js';
 const getAllPlace = async (req, res, next) => {
     const response = new Response();
     try {
-        const responseFromService =  await placeService.getAllPlaces()
+        const responseFromService = await placeService.getAllPlaces(
+          req.query.page,
+          req.query.size
+        );
 
         response.status = 200;
         response.message = 'ok';
@@ -17,7 +20,7 @@ const getAllPlace = async (req, res, next) => {
     return res.status(response.status).send(response);
 };
 
-const createAllPlace = async function (req, res, next) {
+const createPlace = async function (req, res, next) {
     const response = new Response();
     try {
         const responseFromService = await placeService.createPlace(req.body, req.userId)
@@ -36,7 +39,7 @@ const createAllPlace = async function (req, res, next) {
     }
 };
 
-const deleteAllPlace = async function (req, res, next) {
+const deletePlace = async function (req, res, next) {
     const response = new Response();
     try {
         const responseFromService = await placeService.deletePlace(req.query.id, req.userId)
@@ -55,7 +58,7 @@ const deleteAllPlace = async function (req, res, next) {
     }
 };
 
-const putAllPlace = async function (req, res, next) {
+const putPlace = async function (req, res, next) {
     const response = new Response();
     try {
         const responseFromService = await placeService.updatePlace(req.query.id, req.body)
@@ -74,4 +77,4 @@ const putAllPlace = async function (req, res, next) {
     }
 };
 
-export default { getAllPlace, createAllPlace, deleteAllPlace, putAllPlace };
+export default { getAllPlace, createPlace, deletePlace, putPlace };

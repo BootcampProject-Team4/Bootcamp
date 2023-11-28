@@ -5,8 +5,13 @@ import Activity from '../models/activity.js';
 // Function to get all activities
 const getAllActivities = async () => {
     try {
+         const offset = (page - 1) * size;    
+        const activities = await Activity.findAll({
+          offset: offset,
+          limit: size,
+        });
+
         
-        const activities = await Activity.findAll();
         return activities;
     } catch (error) {
         throw new Error(`Error in getAllActivities service: ${error.message}`);

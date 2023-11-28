@@ -1,7 +1,6 @@
 import Joi from 'joi';
 
-const activitySchema = Joi.object({
-  id: Joi.number().integer().positive(),
+const activitySchema = Joi.object({  
   name: Joi.string().required(),
   startdate: Joi.date().iso().required(),
   enddate: Joi.date().iso().required(),
@@ -9,6 +8,8 @@ const activitySchema = Joi.object({
   endtime: Joi.string().pattern(new RegExp('^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$')).required(),
   description: Joi.string(),
   capacity: Joi.number().integer(),
+  placeid: Joi.string().required(),
+  categoryid: Joi.string().required()
 });
-
-export default activitySchema;
+//place id eklenmeli category_id
+export default {activitySchema};

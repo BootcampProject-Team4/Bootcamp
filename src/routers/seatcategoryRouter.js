@@ -1,25 +1,33 @@
 import express from "express";
 import seatcategoryController from "../controllers/seatcategoryController.js";
+import joiSchemaValidation from "../middleware/joiSchemaValidation.js";
+import commonSchemas from "../constants/validationSchema/commonSchemas.js";
 
 
 const router = express.Router();
 router.get(
-    "/", 
-    seatcategoryController.getAllSeatcategory
+  "/",
+  joiSchemaValidation.validateQuerryParams(commonSchemas.paginationSchema),
+  seatcategoryController.getAllSeatcategory
 );
 
 router.post(
-    "/", 
-    seatcategoryController.createAllSeatcategory
-    );
+  "/",
+  joiSchemaValidation.validateBody(commonSchemas.nameSchema),
+  seatcategoryController.createSeatcategory
+);
 
 router.delete(
-    "/", 
-    seatcategoryController.deleteAllSeatcategory
-    );
+  "/",
+  joiSchemaValidation.validateQuerryParams(commonSchemas.idSchema),
+  seatcategoryController.deleteSeatcategory
+);
 
 router.put(
-    "/", 
-    seatcategoryController.putAllSeatcategory
-    );
+  "/",
+  joiSchemaValidation.validateQuerryParams(commonSchemas.idSchema),
+  joiSchemaValidation.validateBody(commonSchemas.nameSchema),
+  seatcategoryController.putSeatcategory
+);
+    
 export default router;

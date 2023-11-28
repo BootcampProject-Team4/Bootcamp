@@ -16,7 +16,7 @@ const getAllActivity = async (req, res, next) => {
     return res.status(response.status).send(response);
 };
 
-const createAllActivity = async function (req, res, next) {
+const createActivity = async function (req, res, next) {
     const response = new Response();
     try {
         const responseFromService = await activityService.createActivity(req.body, req.userId)
@@ -35,7 +35,7 @@ const createAllActivity = async function (req, res, next) {
     }
 };
 
-const deleteAllActivity = async function (req, res, next) {
+const deleteActivity = async function (req, res, next) {
     const response = new Response();
     try {
         const responseFromService = await activityService.deleteActivity(req.query.id, req.userId)
@@ -54,7 +54,7 @@ const deleteAllActivity = async function (req, res, next) {
     }
 };
 
-const putAllActivity = async function (req, res, next) {
+const putActivity = async function (req, res, next) {
     const response = new Response();
     try {
         const responseFromService = await activityService.updateActivity(req.query.id, req.body)
@@ -73,4 +73,4 @@ const putAllActivity = async function (req, res, next) {
     }
 };
 
-export default {getAllActivity, createAllActivity, deleteAllActivity, putAllActivity};
+export default {getAllActivity, createActivity, deleteActivity, putActivity};

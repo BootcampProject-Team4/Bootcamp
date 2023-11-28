@@ -5,8 +5,7 @@ const getAllCategory = async (req, res, next) => {
     const response = new Response();
     
     try {
-        const responseFromService =  await categoryService.getAllCategories()
-
+        const responseFromService =  await categoryService.getAllCategories(req.query.page, req.query.size)
 
         response.status = 200;
         response.message = 'ok';
@@ -19,7 +18,7 @@ const getAllCategory = async (req, res, next) => {
     return res.status(response.status).send(response);
 };
 
-const createAllCategory = async function (req, res, next) {
+const createCategory = async function (req, res, next) {
     const response = new Response();
     try {
         const responseFromService = await categoryService.createCategory(req.body, req.userId)
@@ -38,7 +37,7 @@ const createAllCategory = async function (req, res, next) {
     }
 };
 
-const deleteAllCategory = async function (req, res, next) {
+const deleteCategory = async function (req, res, next) {
     const response = new Response();
     try {
         const responseFromService = await categoryService.deleteCategory(req.query.id, req.userId)
@@ -57,7 +56,7 @@ const deleteAllCategory = async function (req, res, next) {
     }
 };
 
-const putAllCategory = async function (req, res, next) {
+const putCategory = async function (req, res, next) {
     const response = new Response();
     try {
         const responseFromService = await categoryService.updateCategory(req.query.id, req.body)
@@ -76,4 +75,4 @@ const putAllCategory = async function (req, res, next) {
     }
 };
 
-export default {getAllCategory, createAllCategory, deleteAllCategory, putAllCategory};
+export default {getAllCategory, createCategory, deleteCategory, putCategory};

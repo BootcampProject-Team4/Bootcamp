@@ -1,33 +1,32 @@
 import express from 'express';
 import categoryController from '../controllers/categoryController.js';
 import joiSchemaValidation from '../middleware/joiSchemaValidation.js';
-import categorySchemas from '../constants/validationSchema/categorySchemas.js';
-
-
-
+import commonSchemas from '../constants/validationSchema/commonSchemas.js';
 
 const router = express.Router();
 router.get(
-    '/',
-    categoryController.getAllCategory,
-    joiSchemaValidation.validateQuerryParams(categorySchemas),
+  "/",
+  joiSchemaValidation.validateQuerryParams(commonSchemas.paginationSchema),
+  categoryController.getAllCategory
 );
 
-router.post( 
-    '/',
-    categoryController.createAllCategory,
-    joiSchemaValidation.validateBody(categorySchemas),
+router.post(
+  "/",
+  joiSchemaValidation.validateBody(commonSchemas.nameSchema),
+  categoryController.createCategory
 );
 
 router.delete(
-    '/',
-    categoryController.deleteAllCategory,
-    joiSchemaValidation.validateQuerryParams(categorySchemas),
+  "/",
+  joiSchemaValidation.validateQuerryParams(commonSchemas.idSchema),
+  categoryController.deleteCategory
 );
 
 router.put(
   "/",
-  categoryController.putAllCategory,
-  joiSchemaValidation.validateQuerryParams(categorySchemas)
+  joiSchemaValidation.validateQuerryParams(commonSchemas.idSchema),
+  joiSchemaValidation.validateBody(commonSchemas.nameSchema),
+  categoryController.putCategory
 );
+
 export default router;

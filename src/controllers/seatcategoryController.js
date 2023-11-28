@@ -4,7 +4,10 @@ import seatcategoryService from "../services/seatcategoryService.js";
 const getAllSeatcategory = async (req, res, next) => {
   const response = new Response();
   try {
-    const responseFromService = await seatcategoryService.getAllSeatcategories();
+    const responseFromService = await seatcategoryService.getAllSeatcategories(
+      req.query.page,
+      req.query.size
+    );
 
     response.status = 200;
     response.message = "ok";
@@ -17,7 +20,7 @@ const getAllSeatcategory = async (req, res, next) => {
   return res.status(response.status).send(response);
 };
 
-const createAllSeatcategory = async function (req, res, next) {
+const createSeatcategory = async function (req, res, next) {
   const response = new Response();
   try {
     const responseFromService = await seatcategoryService.createSeatcategory(
@@ -37,7 +40,7 @@ const createAllSeatcategory = async function (req, res, next) {
   }
 };
 
-const deleteAllSeatcategory = async function (req, res, next) {
+const deleteSeatcategory = async function (req, res, next) {
   const response = new Response();
   try {
     const responseFromService = await seatcategoryService.deleteSeatcategory(
@@ -57,7 +60,7 @@ const deleteAllSeatcategory = async function (req, res, next) {
   }
 };
 
-const putAllSeatcategory = async function (req, res, next) {
+const putSeatcategory = async function (req, res, next) {
   const response = new Response();
   try {
     const responseFromService = await seatcategoryService.updateSeatcategory(
@@ -77,4 +80,4 @@ const putAllSeatcategory = async function (req, res, next) {
   }
 };
 
-export default { getAllSeatcategory, createAllSeatcategory, deleteAllSeatcategory, putAllSeatcategory };
+export default { getAllSeatcategory, createSeatcategory, deleteSeatcategory, putSeatcategory };

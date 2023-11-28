@@ -4,7 +4,10 @@ import userService from "../services/userService.js";
 const getAllUser = async (req, res, next) => {
   const response = new Response();
   try {
-    const responseFromService = await userService.getAllUsers();
+    const responseFromService = await userService.getAllUsers(
+      req.query.page,
+      req.query.size
+    );
 
     response.status = 200;
     response.message = "ok";
@@ -17,7 +20,7 @@ const getAllUser = async (req, res, next) => {
   return res.status(response.status).send(response);
 };
 
-const createAllUser = async function (req, res, next) {
+const createUser = async function (req, res, next) {
   const response = new Response();
   try {
     const responseFromService = await userService.createUser(
@@ -37,7 +40,7 @@ const createAllUser = async function (req, res, next) {
   }
 };
 
-const deleteAllUser = async function (req, res, next) {
+const deleteUser = async function (req, res, next) {
   const response = new Response();
   try {
     const responseFromService = await userService.deleteUser(
@@ -57,7 +60,7 @@ const deleteAllUser = async function (req, res, next) {
   }
 };
 
-const putAllUser = async function (req, res, next) {
+const putUser = async function (req, res, next) {
   const response = new Response();
   try {
     const responseFromService = await userService.updateUser(
@@ -77,4 +80,4 @@ const putAllUser = async function (req, res, next) {
   }
 };
 
-export default { getAllUser, createAllUser, deleteAllUser, putAllUser };
+export default { getAllUser, createUser, deleteUser, putUser };

@@ -5,7 +5,10 @@ const getAllAddress = async (req, res, next) => {
   const response = new Response();
 
   try {
-    const responseFromService = await addressService.getAllAddresses();
+    const responseFromService = await addressService.getAllAddresses(
+      req.query.page,
+      req.query.size
+    );
 
     response.status = 200;
     response.message = "ok";
@@ -21,7 +24,7 @@ const getAllAddress = async (req, res, next) => {
   return res.status(response.status).send(response);
 };
 
-const createAllAddress = async function (req, res, next) {
+const createAddress = async function (req, res, next) {
   const response = new Response();
   try {
     const responseFromService = await addressService.createAddress(req.body, req.userId);
@@ -41,7 +44,7 @@ const createAllAddress = async function (req, res, next) {
   }
 };
 
-const deleteAllAddress = async function (req, res, next) {
+const deleteAddress = async function (req, res, next) {
   const response = new Response();
   try {
     const responseFromService = await addressService.deleteAddress( req.query.id, req.userId );
@@ -62,7 +65,7 @@ const deleteAllAddress = async function (req, res, next) {
   }
 };
 
-const putAllAddress = async function (req, res, next) {
+const putAddress = async function (req, res, next) {
   const response = new Response();
   try {
     const responseFromService = await addressService.updateAddress( req.query.id, req.body );
@@ -82,4 +85,4 @@ const putAllAddress = async function (req, res, next) {
   }
 };
 
-export default { getAllAddress, createAllAddress, deleteAllAddress, putAllAddress };
+export default { getAllAddress, createAddress, deleteAddress, putAddress };

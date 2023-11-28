@@ -1,12 +1,13 @@
 import Place from '../models/place.js';
 
-const getAllPlaces = async () => {
+const getAllPlaces = async (page, size) => {
   try {
-    const places = await Place.findAll();
-  
+    const offset = (page - 1) * size;  
+    const places = await Place.findAll({ offset: offset, limit: size });
+
     return places;
   } catch (error) {
-    throw new Error(`Error in getAllPlaces service: ${error.message}`);    
+    throw new Error(`Error in getAllPlaces service: ${error.message}`);
   }
 };
 

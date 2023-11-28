@@ -1,8 +1,9 @@
 import Seat from "../models/seat.js";
 
-const getAllSeats = async () => {
+const getAllSeats = async (page, size) => {
   try {
-    const seats = await Seat.findAll();
+    const offset = (page - 1) * size;
+    const seats = await Seat.findAll({ offset: offset, limit: size });
 
     return seats;
   } catch (error) {

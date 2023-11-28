@@ -1,9 +1,11 @@
 
 import Category from '../models/category.js';
 
-const getAllCategories = async () => {
+const getAllCategories = async (page , size ) => {
   try {
-    const categories = await Category.findAll();
+
+    const offset =(page - 1) * size    
+    const categories = await Category.findAll({ offset: offset, limit: size });
   
     return categories;
   } catch (error) {

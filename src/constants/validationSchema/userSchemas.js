@@ -5,4 +5,4 @@ const userSchema = Joi.object({
   email: Joi.string().email().required(),
 });
 
-export default userSchema;
+export default {userSchema};
