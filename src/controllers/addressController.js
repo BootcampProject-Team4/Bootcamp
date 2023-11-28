@@ -1,6 +1,26 @@
 import { Response } from "../constants/response.js";
 import addressService from "../services/addressService.js";
 
+
+const getById = async (req, res, next) => {
+  const response = new Response();
+  try {
+    const responseFromService = await addressService.getById(req.query.id);
+
+    response.status = 200;
+    response.message = "ok";
+    response.body = responseFromService;
+  } catch (error) {
+    console.log(
+      "something went wrong: Controller: addressController.js",
+      error
+    );
+    response.status = 400;
+    response.message = error.message;
+  }
+  return res.status(response.status).send(response);
+};
+
 const getAllAddress = async (req, res, next) => {
   const response = new Response();
 
@@ -85,4 +105,4 @@ const putAddress = async function (req, res, next) {
   }
 };
 
-export default { getAllAddress, createAddress, deleteAddress, putAddress };
+export default { getAllAddress, createAddress, deleteAddress, putAddress, getById };

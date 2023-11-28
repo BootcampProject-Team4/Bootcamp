@@ -12,8 +12,7 @@ const Activity = db.sequelize.define("Activity", {
   },
   name: {
     type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
+    allowNull: false,    
   },
   startdate: {
     type: DataTypes.DATEONLY,

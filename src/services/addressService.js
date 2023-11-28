@@ -1,9 +1,21 @@
 import Address from "../models/address.js";
 
-const getAllAddresses = async () => {
+const getById = async (id) => {
   try {
-    const Addresses = await Address.findAll({ offset: offset, limit: size });
+    const address = await Address.findOne({ where: { id: id } });
 
+    if (!address) throw new Error(`Address is not found`);
+    return address;
+  } catch (error) {
+    throw new Error(`Error in getById service: ${error.message}`);
+  }
+};
+
+const getAllAddresses = async (page, size) => {
+  try {
+    const offset = (page - 1) * size;
+    const Addresses = await Address.findAll({ offset: offset, limit: size });
+    
     return Addresses;
   } catch (error) {
     throw new Error(`Error in getAllAddress service: ${error.message}`);
@@ -22,11 +34,15 @@ const createAddress = async (AddressData) => {
 
 const deleteAddress = async (AddressId) => {
   try {
-    const deletedAddress = await Address.destroy({
+    const address = await Address.findOne({ where: { id: +AddressId } });
+
+    if (!address) throw new Error(`Address is not found`);
+
+    await Address.destroy({
       where: { id: +AddressId },
     });
 
-    return deletedAddress;
+    return AddressId;
   } catch (error) {
     throw new Error(`Error in deleteAddress service: ${error.message}`);
   }
@@ -53,4 +69,5 @@ export default {
   createAddress,
   deleteAddress,
   updateAddress,
+  getById
 };

@@ -1,5 +1,16 @@
 import Seat from "../models/seat.js";
 
+const getById = async (id) => {
+  try {
+    const seat = await Seat.findOne({ where: { id: id } });
+
+    if (!seat) throw new Error(`Seat is not found`);
+    return seat;
+  } catch (error) {
+    throw new Error(`Error in getById service: ${error.message}`);
+  }
+};
+
 const getAllSeats = async (page, size) => {
   try {
     const offset = (page - 1) * size;
@@ -23,7 +34,11 @@ const createSeat = async (SeatData) => {
 
 const deleteSeat = async (SeatId) => {
   try {
-    await Seat.destroy({ where: { id: +SeatId } });""
+    const seat = await Seat.findOne({ where: { id: +SeatId } });
+
+    if (!seat) throw new Error(`Seat is not found`);
+
+    await Seat.destroy({ where: { id: +SeatId } });
  
     return SeatId;
   } catch (error) {
@@ -47,4 +62,4 @@ const updateSeat = async (SeatId, SeatData) => {
   }
 };
 
-export default { getAllSeats, createSeat, deleteSeat, updateSeat };
+export default { getAllSeats, createSeat, deleteSeat, updateSeat, getById };

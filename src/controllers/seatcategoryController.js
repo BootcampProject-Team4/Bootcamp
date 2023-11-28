@@ -1,6 +1,22 @@
 import { Response } from "../constants/response.js";
 import seatcategoryService from "../services/seatcategoryService.js";
 
+const getById = async (req, res, next) => {
+  const response = new Response();
+  try {
+    const responseFromService = await seatcategoryService.getById(req.query.id);
+
+    response.status = 200;
+    response.message = "ok";
+    response.body = responseFromService;
+  } catch (error) {
+    console.log("something went wrong: Controller: seatCategoryController.js", error);
+    response.status = 400;
+    response.message = error.message;
+  }
+  return res.status(response.status).send(response);
+};
+
 const getAllSeatcategory = async (req, res, next) => {
   const response = new Response();
   try {
@@ -80,4 +96,4 @@ const putSeatcategory = async function (req, res, next) {
   }
 };
 
-export default { getAllSeatcategory, createSeatcategory, deleteSeatcategory, putSeatcategory };
+export default { getAllSeatcategory, createSeatcategory, deleteSeatcategory, putSeatcategory, getById };

@@ -1,6 +1,41 @@
 import { Response } from "../constants/response.js";
 import userService from "../services/userService.js";
 
+const login = async (req, res, next) => {
+  const response = new Response();
+  try {
+    const responseFromService = await userService.login(req.body.email, req.body.password);
+
+    response.status = 200;
+    response.message = "ok";
+    response.body = responseFromService;
+  } catch (error) {
+    console.log("something went wrong: Controller: userController.js", error);
+    response.status = 400;
+    response.message = error.message;
+  }
+  return res.status(response.status).send(response);
+};
+
+const getById = async (req, res, next) => {
+  const response = new Response();
+  try {
+    const responseFromService = await userService.getById(req.query.id);
+
+    response.status = 200;
+    response.message = "ok";
+    response.body = responseFromService;
+  } catch (error) {
+    console.log(
+      "something went wrong: Controller: userController.js",
+      error
+    );
+    response.status = 400;
+    response.message = error.message;
+  }
+  return res.status(response.status).send(response);
+};
+
 const getAllUser = async (req, res, next) => {
   const response = new Response();
   try {
@@ -80,4 +115,4 @@ const putUser = async function (req, res, next) {
   }
 };
 
-export default { getAllUser, createUser, deleteUser, putUser };
+export default { getAllUser, createUser, deleteUser, putUser, getById , login};

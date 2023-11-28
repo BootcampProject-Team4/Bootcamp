@@ -1,5 +1,17 @@
 import Place from '../models/place.js';
 
+
+const getById = async (id) => {
+  try {
+    const place = await Place.findOne({ where: { id: id } });
+
+    if (!place) throw new Error(`Place is not found`);
+    return place;
+  } catch (error) {
+    throw new Error(`Error in getById service: ${error.message}`);
+  }
+};
+
 const getAllPlaces = async (page, size) => {
   try {
     const offset = (page - 1) * size;  
@@ -23,9 +35,13 @@ const createPlace = async (PlaceData) => {
 
 const deletePlace = async (PlaceId) => {
   try {
-    const deletedPlace = await Place.destroy({ where: { id: +PlaceId }, });
+    const place = await Place.findOne({ where: { id: +PlaceId } });
+
+    if (!place) throw new Error(`Place is not found`);
+
+    await Place.destroy({ where: { id: +PlaceId }, });
     
-    return deletedPlace;
+    return PlaceId;
   } catch (error) {
     throw new Error(`Error in deletePlace service: ${error.message}`);
   }
@@ -44,4 +60,4 @@ const updatePlace = async (PlaceId, PlaceData) => {
   }
 };
 
-export default{ getAllPlaces, createPlace, deletePlace, updatePlace };
+export default{ getAllPlaces, createPlace, deletePlace, updatePlace, getById };

@@ -18,6 +18,10 @@ const User = db.sequelize.define("User", {
     allowNull: false,
     unique: true,
   },
+  password: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
 });
 
 // Kontrol et ve tabloyu oluştur veya güncelle.

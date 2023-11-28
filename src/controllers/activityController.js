@@ -1,9 +1,34 @@
 import { Response } from '../constants/response.js';
-import activityService from '../services/activityService.js';
+import activityService from '../services/activityService.js'
+
+const getById = async (req, res, next) => {
+  const response = new Response();
+  try {
+    const responseFromService = await activityService.getById(
+      req.query.id
+    );
+
+    response.status = 200;
+    response.message = "ok";
+    response.body = responseFromService;
+  } catch (error) {
+    console.log(
+      "something went wrong: Controller: activityController.js",
+      error
+    );
+    response.status = 400;
+    response.message = error.message;
+  }
+  return res.status(response.status).send(response);
+};
+
 const getAllActivity = async (req, res, next) => {
     const response = new Response();
     try {
-        const responseFromService =  await activityService.getAllActivities()
+        const responseFromService = await activityService.getAllActivities(
+          req.query.page,
+          req.query.size
+        );
 
         response.status = 200;
         response.message = 'ok';
@@ -73,4 +98,4 @@ const putActivity = async function (req, res, next) {
     }
 };
 
-export default {getAllActivity, createActivity, deleteActivity, putActivity};
+export default {getAllActivity, createActivity, deleteActivity, putActivity,getById};

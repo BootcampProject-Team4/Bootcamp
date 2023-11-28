@@ -1,5 +1,18 @@
 import Seatcategory from "../models/seatcategory.js";
 
+
+
+const getById = async (id) => {
+  try {
+    const seatCategory = await Seatcategory.findOne({ where: { id: id } });
+
+    if (!seatCategory) throw new Error(`Seat Category is not found`);
+    return seatCategory;
+  } catch (error) {
+    throw new Error(`Error in getById service: ${error.message}`);
+  }
+};
+
 const getAllSeatcategories = async (page, size) => {
   try {
     const offset = (page - 1) * size;
@@ -26,7 +39,11 @@ const createSeatcategory = async (SeatcategoryData) => {
 
 const deleteSeatcategory = async (SeatcategoryId) => {
   try {
-    await Seatcategory.destroy({ where: { id: +SeatcategoryId } });""
+    const seatCategory = await Seatcategory.findOne({ where: { id: +SeatcategoryId } });
+
+    if (!seatCategory) throw new Error(`Seat Category is not found`);
+
+    await Seatcategory.destroy({ where: { id: +SeatcategoryId } });
  
     return SeatcategoryId;
   } catch (error) {
@@ -50,4 +67,4 @@ const updateSeatcategory = async (SeatcategoryId, SeatcategoryData) => {
   }
 };
 
-export default { getAllSeatcategories, createSeatcategory, deleteSeatcategory, updateSeatcategory };
+export default { getAllSeatcategories, createSeatcategory, deleteSeatcategory, updateSeatcategory, getById };

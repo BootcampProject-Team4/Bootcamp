@@ -1,6 +1,17 @@
 
 import Category from '../models/category.js';
 
+const getById = async (id) => {
+  try {
+    const category = await Category.findOne({ where: { id: id } });
+
+    if (!category) throw new Error(`Category is not found`);
+    return category;
+  } catch (error) {
+    throw new Error(`Error in getById service: ${error.message}`);
+  }
+};
+
 const getAllCategories = async (page , size ) => {
   try {
 
@@ -25,9 +36,13 @@ const createCategory = async (categoryData) => {
 
 const deleteCategory = async (CategoryId) => {
   try {
-    const deletedCategory = await Category.destroy({ where: { id: +CategoryId }, });
+    const category = await Category.findOne({ where: { id: +CategoryId } });
+
+    if (!category) throw new Error(`Category is not found`);
+
+    await Category.destroy({ where: { id: +CategoryId }, });
     
-    return deletedCategory;
+    return CategoryId;
   } catch (error) {
     throw new Error(`Error in deleteCategory service: ${error.message}`);
   }
@@ -46,4 +61,4 @@ const updateCategory = async (categoryId, categoryData) => {
   }
 };
 
-export default{ getAllCategories, createCategory, deleteCategory, updateCategory };
+export default{ getAllCategories, createCategory, deleteCategory, updateCategory, getById };

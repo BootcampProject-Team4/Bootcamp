@@ -1,6 +1,25 @@
 import { Response } from '../constants/response.js';
 import seatService from '../services/seatService.js';
 
+const getById = async (req, res, next) => {
+  const response = new Response();
+  try {
+    const responseFromService = await seatService.getById(req.query.id);
+
+    response.status = 200;
+    response.message = "ok";
+    response.body = responseFromService;
+  } catch (error) {
+    console.log(
+      "something went wrong: Controller: seatController.js",
+      error
+    );
+    response.status = 400;
+    response.message = error.message;
+  }
+  return res.status(response.status).send(response);
+};
+
 const getAllSeat = async (req, res, next) => {
     const response = new Response();
     try {
@@ -77,4 +96,4 @@ const putSeat = async function (req, res, next) {
     }
 };
 
-export default { getAllSeat, createSeat, deleteSeat, putSeat };
+export default { getAllSeat, createSeat, deleteSeat, putSeat, getById };
