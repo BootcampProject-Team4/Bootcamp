@@ -7,7 +7,6 @@ const activitySchema = Joi.object({
   starttime: Joi.string().pattern(new RegExp('^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$')).required(),
   endtime: Joi.string().pattern(new RegExp('^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$')).required(),
   description: Joi.string(),
-  capacity: Joi.number().integer(),
   placeid: Joi.number().required(),
   categoryid: Joi.number().required()
 });

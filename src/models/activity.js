@@ -35,10 +35,7 @@ const Activity = db.sequelize.define("Activity", {
     //allowNull: false,
     unique: true,
   },
-  capacity: {
-    type: DataTypes.INTEGER,
-    //allowNull: false,
-  },
+
 });
 Place.hasOne(Activity);
 Category.hasMany(Activity);

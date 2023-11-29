@@ -14,7 +14,6 @@ const Seatcategory = db.sequelize.define("Seatcategory", {
   },
 });
 
-Seatcategory.hasMany(Seat);
 
 // Kontrol et ve tabloyu oluştur veya güncelle.
 Seatcategory.sync()

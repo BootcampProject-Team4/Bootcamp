@@ -4,7 +4,7 @@ import jwt from "jsonwebtoken";
 
 const login = async function (email, password) {
   try {
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({where :{ email: email }});
     if (!user) {
       throw new Error("Email or Password wrong");
     }
