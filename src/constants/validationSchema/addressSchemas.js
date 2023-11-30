@@ -4,7 +4,7 @@ const addressSchema = Joi.object({
   city: Joi.string().required(),
   district: Joi.string().required(),
   neighborhood: Joi.string().required(),
-  street: Joi.number().integer(),
+  street: Joi.string(),
   gatenumber: Joi.number().integer(),
 });
 

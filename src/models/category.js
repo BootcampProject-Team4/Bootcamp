@@ -1,5 +1,6 @@
 import { DataTypes } from 'sequelize';
 import db from '../db.js';
+import categoryData from "../mockData/categoryData.js";
 
 
 const Category = db.sequelize.define('Category', {
@@ -19,6 +20,15 @@ const Category = db.sequelize.define('Category', {
 // Kontrol et ve tabloyu oluştur veya güncelle.
 Category.sync()
   .then(() => {
+
+        const categories = categoryData;
+
+        categories.forEach(async (x) => {
+          const category = await Category.findOne({ where: { name: x.name } });
+
+          if (!category) Category.create(x);
+        });
+
     console.log("Category modeli oluşturuldu veya güncellendi.");
   })
   .catch((err) => {

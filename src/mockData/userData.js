@@ -11,12 +11,12 @@
      email: "admin@gmail.com",
      password: "admin1234",
    },
-   {
+/*   {
      id: 3,
      username: "edanurkabay",
      email: "edanurkabay@gmail.com",
      password: "eda123eda",
-   },
+   }, */
  ];
 
  export default usersData;
