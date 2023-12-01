@@ -7,8 +7,8 @@ const activitySchema = Joi.object({
   starttime: Joi.string().pattern(new RegExp('^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$')).required(),
   endtime: Joi.string().pattern(new RegExp('^([0-1]?[0-9]|2[0-3]):[0-5][0-9]$')).required(),
   description: Joi.string(),
-  placeid: Joi.number().required(),
-  categoryid: Joi.number().required()
+  PlaceId: Joi.number().required(),
+  CategoryId: Joi.number().required()
 });
 //place id eklenmeli category_id
 export default {activitySchema};

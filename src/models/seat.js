@@ -2,7 +2,7 @@ import { DataTypes } from 'sequelize';
 import db from '../db.js';
 import Place from './place.js';
 import Seatcategory from './seatcategory.js'
-import seatData from "../mockData/seatData.js";
+
 
 const Seat = db.sequelize.define("Seat", {
   id: {
@@ -26,21 +26,5 @@ Seatcategory.hasMany(Seat);
 
 
 // Kontrol et ve tabloyu oluştur veya güncelle.
-Seat.sync()
-  .then(() => {
-
-        const seats = seatData;
-
-        seats.forEach(async (x) => {
-          const seat = await Seat.findOne({ where: { benchseat: x.benchseat } });
-
-          if (!seat) Seat.create(x);
-        });
-
-    console.log('Seat modeli oluşturuldu veya güncellendi.');
-  })
-  .catch((err) => {
-    console.error('Seat modeli oluşturulurken hata oluştu:', err);
-  });
 
 export default Seat;

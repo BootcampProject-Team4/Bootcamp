@@ -1,6 +1,6 @@
 import { DataTypes } from 'sequelize';
 import db from '../db.js';
-import userData from '../mockData/userData.js'
+
 
 const User = db.sequelize.define("User", {
   id: {
@@ -26,23 +26,5 @@ const User = db.sequelize.define("User", {
 });
 
 // Kontrol et ve tabloyu oluştur veya güncelle.
-User.sync()
-  .then(() => {
-
-    const users = userData;
-
-    users.forEach(async (x) => {
-
-      const user = await User.findOne({ where: { email : x.email } })
-
-      if(!user)   User.create(x);
-     
-    })
-
-    console.log('User modeli oluşturuldu veya güncellendi.');
-  })
-  .catch((err) => {
-    console.error('User modeli oluşturulurken hata oluştu:', err);
-  });
 
 export default User;

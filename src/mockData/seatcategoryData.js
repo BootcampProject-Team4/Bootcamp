@@ -1,44 +1,43 @@
-const seatcategoriesData =[
+const seatcategoriesData = [
   {
-    "id": 1,
-    "name": "A"
-  },  
+    id: 1,
+    name: "A",
+  },
   {
-    "id": 2,
-    "name": "B"
-  },  
+    id: 2,
+    name: "B",
+  },
   {
-    "id": 3,
-    "name": "C"
-  },  
+    id: 3,
+    name: "C",
+  },
   {
-    "id": 4,
-    "name": "D"
-  },  
+    id: 4,
+    name: "D",
+  },
   {
-    "id": 5,
-    "name": "E"
-  },  
+    id: 5,
+    name: "E",
+  },
   {
-    "id": 6,
-    "name": "F"
-  },  
+    id: 6,
+    name: "F",
+  },
   {
-    "id": 7,
-    "name": "G"
-  },  
+    id: 7,
+    name: "G",
+  },
   {
-    "id": 8,
-    "name": "H"
-  },  
+    id: 8,
+    name: "H",
+  },
   {
-    "id": 9,
-    "name": "I"
-  },  
+    id: 9,
+    name: "I",
+  },
   {
-    "id": 10,
-    "name": "J"
-  }
-  
-]
+    id: 10,
+    name: "J",
+  },
+];
 export default seatcategoriesData;
