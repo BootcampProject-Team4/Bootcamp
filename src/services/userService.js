@@ -8,7 +8,7 @@ const login = async function (email, password) {
     if (!user) {
       throw new Error("Email or Password wrong");
     }
-    const isValid = await bcrypt.compare(password, user.password);
+    const isValid = await bcrypt.compare(password, user.password); 
     if (!isValid) {
       throw new Error("Email or Password wrong");
     }
